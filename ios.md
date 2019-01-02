@@ -1,4 +1,4 @@
-###IOS SDk 集成
+###IOS SDK 集成
 
 
 
