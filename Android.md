@@ -1,38 +1,34 @@
-### Android SDK 集成
+# Android 开发集成
 
+## 概要介绍
 
+对话流 Android SDK 分为 `common` (基础模块) 和 `speech` (语音识别模块) 两部分。基础模块可以单独使用，语音识别模块需要依赖基础模块使用
 
-#### 概要介绍
-
-对话流 Android SDK 分为 `common` (基础模块) 和 `speech` (语音识别模块) 两部分。基础模块可以单独使用，语音识别模块需要依赖基础模块使用。
-
-
-
-#### 一、基础模块集成
+## 基础模块集成
 
 基础模块 `common` SDK 是对话流服务其他能力（语音识别等）的基础，提供了消息收发，语音、图片、视频、文件上传功能，本节将介绍基础模块的集成步骤。当需要集成多个模块的时候，请确保每个模块的版本号完全相同。
 
-#### 准备工作
+### 准备工作
 
 **1、系统要求**
 
 ```
-    minSdkVersion 21
+minSdkVersion 21
 
-    ndk {
-        // SDK 目前仅支持 armeabi 一种 SO 库架构。该方案牺牲少许性能，可显著减小 apk 的大小
-        abiFilters 'armeabi'
-    }
+ndk {
+    // SDK 目前仅支持 armeabi 一种 SO 库架构。该方案牺牲少许性能，可显著减小 apk 的大小
+    abiFilters 'armeabi'
+}
 
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
-    }
+compileOptions {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 ```
 
 **2、依赖添加**
 
-首先从网站上下载 `common-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies`：
+首先从网站上下载 `common-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` :
 
 ```
 repositories {
@@ -144,7 +140,7 @@ ext {
 
 **4、混淆配置**
 
-对话流 SDK aar 自带混淆配置文件，无需特意对其进行混淆配置。
+对话流 SDK aar 自带混淆配置文件，无需特意对其进行混淆配置
 
 **5、初始化**
 
@@ -165,7 +161,7 @@ public class BaseApplication extends Application {
 }
 ```
 
-在用户**登录**之后初始化用户信息，每次切换用户需要重新初始化，避免数据混乱：
+在用户 **登陆** 之后初始化用户信息，每次切换用户需要重新初始化，避免数据混乱：
 
 ```
     // user id 用于标识当前用户的唯一id，由调用方生成，自行维护
@@ -176,91 +172,90 @@ public class BaseApplication extends Application {
 
 至此，您已经可以开始使用对话流 SDK 提供的各种功能了。
 
-#### 消息收发
+### 消息收发
 
-- SDK 的消息发送对象均为 `MessageRequest` ，通过Builder模式生成。消息的类型根据 `video > audio > image > text` 的优先级自动判断，如果四个域均未赋值，则视为无效请求，不进行发送操作。创建一条消息的方法为：
+* SDK 的消息发送对象均为 `MessageRequest` ，通过Builder模式生成。消息的类型根据 `video > audio > image > text` 的优先级自动判断，如果四个域均未赋值，则视为无效请求，不进行发送操作。创建一条消息的方法为：
 
-  ```
-  MessageRequest request = new MessageRequest.Builder()
-      .agentId("agent id") // 当前 agent id，必填
-      .agentName("") // 当前 agent 名字，用于后台可视化信息，选填
-      .userId("user id") // user id，选填
-      .query("text 请求") // 发送文字消息时填写
-      .audioFilePath("") // audio 文件的本地路径，发送 audio 消息时填写
-      .audioUrl("") // audio 文件的云存储地址，与 audioFilePath 二选一
-      .videoFilePath("") // video 文件的本地路径，发送 video 消息时填写
-      .videoUrl("") // video 文件的云存储地址，与 videoFilePath 二选一
-      .imageFilePath("") // image 文件的本地路径，发送 image 消息时填写
-      .imageUrl("") // image 文件的云存储地址，与 imageFilePath 二选一
-      .forceHandleManually(false) // 是否强制跳转人工客服，默认为 false
-      .requestType(MessageRequest.TYPE_NORMAL) // 请求类型，通常为Normal，可不填
-      .build() // 生成 MessageRequest 实例，用于传入 MessageManager.sendMessage() 中
-  ```
+    ```
+    MessageRequest request = new MessageRequest.Builder()
+        .agentId("agent id") // 当前 agent id，必填
+        .agentName("") // 当前 agent 名字，用于后台可视化信息，选填
+        .userId("user id") // user id，选填
+        .query("text 请求") // 发送文字消息时填写
+        .audioFilePath("") // audio 文件的本地路径，发送 audio 消息时填写
+        .audioUrl("") // audio 文件的云存储地址，与 audioFilePath 二选一
+        .videoFilePath("") // video 文件的本地路径，发送 video 消息时填写
+        .videoUrl("") // video 文件的云存储地址，与 videoFilePath 二选一
+        .imageFilePath("") // image 文件的本地路径，发送 image 消息时填写
+        .imageUrl("") // image 文件的云存储地址，与 imageFilePath 二选一
+        .forceHandleManually(false) // 是否强制跳转人工客服，默认为 false
+        .requestType(MessageRequest.TYPE_NORMAL) // 请求类型，通常为Normal，可不填
+        .build() // 生成 MessageRequest 实例，用于传入 MessageManager.sendMessage() 中
+    ```
 
-- 创建一个MessageManager实例，发送和接收消息。发送的消息会先存到数据库中，并回调 `onReceive()` 方法返回 `MessageResult` ，因此我们推荐使用 `MessageResult` 作为 UI 显示的对象。当信息发送成功后，会再次更新数据库，并回调 `onReceive()` 方法返回同一个 `MessageResult` ，请注意对MessageResult进行去重和状态的判断，MessageResult 的 id 相同即为同一条消息。
+* 创建一个MessageManager实例，发送和接收消息。发送的消息会先存到数据库中，并回调 `onReceive()` 方法返回 `MessageResult` ，因此我们推荐使用 `MessageResult` 作为 UI 显示的对象。当信息发送成功后，会再次更新数据库，并回调 `onReceive()` 方法返回同一个 `MessageResult` ，请注意对MessageResult进行去重和状态的判断，MessageResult 的 id 相同即为同一条消息。
 
-  ```
-  // 创建 MessageManager 实例
-  final MessageManager manager = new MessageManager("agent id");
-  
-  // 注册 MessageManager 回调
-  manager.setListener(new MessageListener() {
-      @Override
-      public void onReceive(MessageResult messageResult) {
-          // 接收到的单条消息
-      }
-  
-      @Override
-      public void onReceive(List<MessageResult> list) {
-          // 接收到的消息列表
-      }
-  
-      @Override
-      public void onError(QueryError error) {
-          // 发生异常回调
-      }
-  });
-  
-  // 发送消息，传入 MessageRequest
-  manager.sendMessage(request);
-  
-  // 删除消息，传入 MessageResult，不可以使用新建的实例
-  manager.deleteMessage(messageResult);
-  
-  // 读取历史信息
-  manager.loadMessage();
-  ```
+    ```
+    // 创建 MessageManager 实例
+    final MessageManager manager = new MessageManager("agent id");
 
-- MessageResult 参数说明：
+    // 注册 MessageManager 回调
+    manager.setListener(new MessageListener() {
+        @Override
+        public void onReceive(MessageResult messageResult) {
+            // 接收到的单条消息
+        }
 
-  | 返回类型       | 接口           | 说明                                                         |
-  | -------------- | -------------- | ------------------------------------------------------------ |
-  | String         | getId          | 获取消息的uuid，在生成消息时会自动赋值，对于 MessageRequest 可以使用 MessageRequest.isSame(MessageResult result) 方法判断是否是同一条消息 |
-  | Date           | getCreateTime  | 获取消息接收的时间                                           |
-  | String         | getReceiverId  | 获取消息接收者 id                                            |
-  | String         | getSenderId    | 获取消息发送者 id                                            |
-  | String         | getAgentId     | 获取消息对应的 Agent Id                                      |
-  | String         | getSessionId   | 获取消息对应的聊天窗口 Session Id                            |
-  | Int            | getMessageType | 获取消息类型<br>MessageResult.TYPE_TEXT 为文字类型<br>MessageResult.TYPE_IMAGE 为图片类型<br>MessageResult.TYPE_AUDIO 为音频类型<br>MessageResult.TYPE_VIDEO 为视频类型<br>MessageResult.TYPE_LINK 为链接类型<br>MessageResult.TYPE_MIXED 为混合类型<br>MessageResult.TYPE_OTHER 为未知类型 |
-  | Int            | getStatus      | 获取消息状态<br>MessageResult.STATUS_DONE = 0 消息发送成功<br>MessageResult.STATUS_CREATED = 1 消息创建<br>MessageResult.STATUS_FAILED = 2 消息发送失败 |
-  | MessageContent | getContent     | 获取消息内容 详见下节                                        |
+        @Override
+        public void onReceive(List<MessageResult> list) {
+            // 接收到的消息列表
+        }
 
-- MessageContent 参数说明：
-  **注：**每条收到的消息都可能有备选选项，通过 `getCandidates` 获取
+        @Override
+        public void onError(QueryError error) {
+            // 发生异常回调
+        }
+    });
 
-  | 消息类型 | 消息内容                                                     |
-  | -------- | ------------------------------------------------------------ |
-  | 文本消息 | getMessage 消息文字                                          |
-  | 图片消息 | getTitle 图片标题<br>getDescription 图片描述<br>getImgUrl 图片链接 |
-  | 音频消息 | getAudioUrl 音频链接                                         |
-  | 视频消息 | getVideoUrl 视频链接                                         |
-  | 链接消息 | getTitle 链接标题<br>getDescription 链接描述<br>getScript 链接需要注入的JavaScript脚本<br>getUrl 链接（以 `http` 或者 `https` 开头为网页链接，其他的为Android deeplink） |
+    // 发送消息，传入 MessageRequest
+    manager.sendMessage(request);
 
+    // 删除消息，传入 MessageResult，不可以使用新建的实例
+    manager.deleteMessage(messageResult);
 
+    // 读取历史信息
+    manager.loadMessage();
+    ```
 
-#### 二、语音识别模块集成
+* MessageResult 参数说明
 
-#### 准备工作
+| 返回类型 | 接口 | 说明 |
+| - | - | - |
+| String | getId | 获取消息的uuid，在生成消息时会自动赋值，对于 MessageRequest 可以使用 MessageRequest.isSame(MessageResult result) 方法判断是否是同一条消息 |
+| Date | getCreateTime | 获取消息接收的时间 |
+| String | getReceiverId | 获取消息接收者 id |
+| String | getSenderId | 获取消息发送者 id |
+| String | getAgentId | 获取消息对应的 Agent Id |
+| String | getSessionId | 获取消息对应的聊天窗口 Session Id |
+| Int | getMessageType | 获取消息类型<br>MessageResult.TYPE_TEXT 为文字类型<br>MessageResult.TYPE_IMAGE 为图片类型<br>MessageResult.TYPE_AUDIO 为音频类型<br>MessageResult.TYPE_VIDEO 为视频类型<br>MessageResult.TYPE_LINK 为链接类型<br>MessageResult.TYPE_MIXED 为混合类型<br>MessageResult.TYPE_OTHER 为未知类型 |
+| Int | getStatus | 获取消息状态<br>MessageResult.STATUS_DONE = 0 消息发送成功<br>MessageResult.STATUS_CREATED = 1 消息创建<br>MessageResult.STATUS_FAILED = 2 消息发送失败 |
+| MessageContent | getContent | 获取消息内容 详见下节 |
+
+* MessageContent 参数说明
+
+**注：** 每条收到的消息都可能有备选选项，通过 `getCandidates` 获取
+
+| 消息类型 | 消息内容 |
+| ------- | ------ |
+| 文本消息 | getMessage 消息文字 |
+| 图片消息 | getTitle 图片标题<br>getDescription 图片描述<br>getImgUrl 图片链接 |
+| 音频消息 | getAudioUrl 音频链接 |
+| 视频消息 | getVideoUrl 视频链接 |
+| 链接消息 | getTitle 链接标题<br>getDescription 链接描述<br>getScript 链接需要注入的JavaScript脚本<br>getUrl 链接（以 `http` 或者 `https` 开头为网页链接，其他的为Android deeplink） |
+
+## 语音识别模块集成
+
+### 准备工作
 
 **1、系统要求**
 
@@ -268,7 +263,7 @@ public class BaseApplication extends Application {
 
 **2、依赖添加**
 
-首先从网站上下载 `speech-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies`：
+首先从网站上下载 `speech-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` ：
 
 ```
 repositories {
@@ -370,9 +365,7 @@ public class BaseApplication extends Application {
 
 至此，您已经可以开始使用语音识别 SDK 提供的各种功能了。
 
-
-
-#### 配置参数
+### 配置参数
 
 ```
 Bundle bundle = new SpeechExtras.Builder()
@@ -383,11 +376,9 @@ Bundle bundle = new SpeechExtras.Builder()
     .build(); // 生成 Bundle 文件，用于传入 SpeechRecognizerWrapper.getInstance().start() 方法中
 ```
 
-**注：**开启 `oneShot` 之后不要使用语音识别的文字结果调用 MessageManager.sendMessage() 发送消息，否则会收到重复的回复信息，因为 `oneShot` 本身就会发起一次请求
+**注：** 开启 `oneShot` 之后不要使用语音识别的文字结果调用 MessageManager.sendMessage() 发送消息，否则会收到重复的回复信息，因为 `oneShot` 本身就会发起一次请求
 
-
-
-#### 语音识别
+### 语音识别
 
 调用 `SpeechRecognizerWrapper.getInstance().start(SpeechListener listener, Bundle bundle)` 开始麦克风收音
 
