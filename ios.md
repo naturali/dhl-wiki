@@ -1,4 +1,4 @@
-###IOS SDK 集成
+#IOS SDK 集成
 
 
 
@@ -6,7 +6,7 @@ Naturali IOS SDK可通过CocoaPods和工程引入两种方式集成，若集成�
 
 
 
-#### 一、CocoaPods集成
+##一、CocoaPods集成
 
 在Podfile文件中增加NaturaliSDK的pod
 
@@ -20,14 +20,16 @@ pod 'NaturaliSDK'
 
 
 
-####二、在project中直接引入SDK
+##二、在project中直接引入SDK
 
 1. 在https://github.com/duihualiu/naturali_sdk_source/releases 选择最新发布的SDK版本并下载解压，将解压后的文件夹拖入工程，文件布局如下图：
+
    ![Alt text](./1545804782619.png)
 
 2. 引入google的Protobuf，若您的工程已引入Protobuf，请跳过本步骤。
 
    前往https://github.com/protocolbuffers/protobuf/releases， 选择最新版本的objectivec包下载并解压，将解压后的文件夹拖入工程，文件布局如下图：
+
    ![Alt text](./1545805353074.png)
 
    google目录展开后如下图：
@@ -44,12 +46,13 @@ pod 'NaturaliSDK'
 
    3. 引入FMDB，若您的工程承已引入FMDB，请跳过本步骤。
       前往https://github.com/ccgus/fmdb/releases ， 选择自信版本的压缩包下载并解压，将解压后的文件夹拖入工程，文件布局如下图：
+
       ![Alt text](./1545806519306.png)
 
    4. 就此protject中直接引入SDK的工作结束，可以项目代码中使用NaturaliSDK了。
 
 
-####Naturali IOS SDK初始化
+###Naturali IOS SDK初始化
 
 使用本框架需要在Naturali平台注册并获取集成app的appId,appKey和appSecret。
 引入NaturaliSDK.h头文件

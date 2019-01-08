@@ -3,13 +3,15 @@
     "generator": "site",
 
     "title": "对话流文档",
-    "description": null,
+    "description": "对话流（Conversation Flow Platform），是奇点机智（Naturali）自主研发的语音对话开发平台，旨在让每个企业都可以轻松开发 AI 对话机器人（AI Bots）。无需程序员，企业的产品、运营人员，也能轻松定义、维护完整流畅的 AI 对话。",
 
     "extension": null,
 
     "plugins": ["styles-less"],
 
     "variables": {},
+
+    "language": "zh-hans",
 
     "links": {
 
