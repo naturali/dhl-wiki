@@ -1,3 +1,91 @@
+.markdown-section{
+  font-size: 1.4rem !important;
+  h1 {
+    font-size: 1.7em;
+  }
+  h2 {
+    font-size: 1.35em;
+  }
+  h3 {
+    font-size: 1.25em;
+  }
+}
+#book-search-input {
+  padding: 6px 6px 6px 41px;
+  input {
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.26);
+    }
+  }
+}
+@media (min-width: 600px) {
+  .book.with-summary {
+    .book-body {
+      left: 200px;
+    }
+  }
+}
+.page-inner {
+  max-width: 1000px;
+}
+
+.book-summary {
+  width: 200px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.12);
+  ul {
+    padding: 0 !important;
+  }
+  ul.summary {
+    .chapter {
+      a,
+      span {
+        padding: 16px 10px 16px 48px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    > .chapter {
+      > a,
+      > span {
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.87);
+      }
+    }
+    .chapter.active {
+      position: relative;
+      background: rgba(28, 196, 248, 0.0632);
+
+      &::after {
+        border-right: 3px solid rgba(28, 196, 248, 1);
+        opacity: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        content: "";
+      }
+
+      a,
+      span {
+        font-weight: bold;
+        color: #1cc4f8;
+      }
+    }
+  }
+  ul.articles {
+    .chapter {
+      a,
+      span {
+        padding: 16px 10px 16px 68px;
+      }
+    }
+  }
+}
 .gitbook-link {
-    display: none !important;
+  display: none !important;
+}
+.font-settings {
+  display: none !important;
 }
