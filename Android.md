@@ -28,7 +28,7 @@ compileOptions {
 
 **2、依赖添加**
 
-首先从网站上下载 `common-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` :
+首先从网站上下载 `DHL_sdk_android_common_xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` :
 
 ```
 repositories {
@@ -69,8 +69,10 @@ dependencies {
     implementation "com.github.Raizlabs.DBFlow:dbflow-core:${rootProject.ext.dbflowVersion}"
     implementation "com.github.Raizlabs.DBFlow:dbflow:${rootProject.ext.dbflowVersion}"
     implementation "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${rootProject.ext.dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${rootProject.ext.dbflowVersion}"
+    implementation "net.zetetic:android-database-sqlcipher:${rootProject.ext.sqlCipherVersion}@aar"
 
-    implementation(name: 'common-release-xxxxx', ext: 'aar')
+    implementation(name: 'DHL_sdk_android_common_xxxxx', ext: 'aar')
 }
 ```
 
@@ -94,6 +96,7 @@ ext {
     grpcVersion = "1.16.1"
     gsonVersion = "2.8.5"
     dbflowVersion = "4.2.4"
+    sqlCipherVersion = "3.5.9"
 }
 ```
 
@@ -113,9 +116,7 @@ ext {
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- required for user data upload service -->
-    <uses-permission
-        android:maxSdkVersion="18"
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -263,7 +264,7 @@ public class BaseApplication extends Application {
 
 **2、依赖添加**
 
-首先从网站上下载 `speech-release-xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` ：
+首先从网站上下载 `DHL_sdk_android_speech_xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` ：
 
 ```
 repositories {
@@ -281,7 +282,7 @@ dependencies {
     implementation "androidx.annotation:annotation:$rootProject.ext.annotationVersion"
     implementation 'net.sourceforge.javaflacencoder:java-flac-encoder:0.3.6'
 
-    implementation(name: 'speech-release-xxxxx', ext: 'aar')
+    implementation(name: 'DHL_sdk_android_speech_xxxxx', ext: 'aar')
 }
 ```
 
@@ -315,9 +316,7 @@ ext {
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- required for user data upload service -->
-    <uses-permission
-        android:maxSdkVersion="18"
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@mipmap/ic_launcher"
