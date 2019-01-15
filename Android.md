@@ -165,10 +165,10 @@ public class BaseApplication extends Application {
 在用户 **登陆** 之后初始化用户信息，每次切换用户需要重新初始化，避免数据混乱：
 
 ```
-    // user id 用于标识当前用户的唯一id，由调用方生成，自行维护
-    // user name 选填，可以不填，用于后台一些可视化界面的提示
-    UserInfo info = new UserInfo("userId", "userName");
-    MessageManager.initUserInfo(info);
+// user id 用于标识当前用户的唯一id，由调用方生成，自行维护
+// user name 选填，可以不填，用于后台一些可视化界面的提示
+UserInfo info = new UserInfo("userId", "userName");
+MessageManager.initUserInfo(info);
 ```
 
 至此，您已经可以开始使用对话流 SDK 提供的各种功能了。
@@ -191,7 +191,21 @@ public class BaseApplication extends Application {
         .imageUrl("") // image 文件的云存储地址，与 imageFilePath 二选一
         .forceHandleManually(false) // 是否强制跳转人工客服，默认为 false
         .requestType(MessageRequest.TYPE_NORMAL) // 请求类型，通常为Normal，可不填
+        .addEntityRequest(entityRequest) // 添加动态实体，可添加多条
         .build() // 生成 MessageRequest 实例，用于传入 MessageManager.sendMessage() 中
+    ```
+
+* 动态实体的数据结构类型为 `EntityRequest` ，具体如下
+
+    ```
+    class EntityRequest implements Serializable {
+
+        // 动态实体类型，格式为 `“org_name” + "." + "agent_name"` ，如“naturali_test.动态实体测试”
+        String typeName = ""
+
+        // 动态实体的key和alias列表，以联系人列表举例，Map的key为联系人名称，如 `李明` ，Map的value为联系人备注列表，如 `[“小明”,"大明"]`
+        HashMap<String, List<String>> values = new HashMap<>()
+    }
     ```
 
 * 创建一个MessageManager实例，发送和接收消息。发送的消息会先存到数据库中，并回调 `onReceive()` 方法返回 `MessageResult` ，因此我们推荐使用 `MessageResult` 作为 UI 显示的对象。当信息发送成功后，会再次更新数据库，并回调 `onReceive()` 方法返回同一个 `MessageResult` ，请注意对MessageResult进行去重和状态的判断，MessageResult 的 id 相同即为同一条消息。
@@ -372,10 +386,28 @@ Bundle bundle = new SpeechExtras.Builder()
     .userId("user id") // 当前用户 user id
     .forceHandleManually(false) // 是否强制进入人工客服，默认为 false
     .oneShot(false) // 是否在返回语音结果的同时返回对话流服务结果，默认为 false
+    .addEntityRequest(entityRequest) // 添加动态实体，用于语音识别使用。可添加多个，动态实体的数据结构参考下节
     .build(); // 生成 Bundle 文件，用于传入 SpeechRecognizerWrapper.getInstance().start() 方法中
 ```
 
 **注：** 开启 `oneShot` 之后不要使用语音识别的文字结果调用 MessageManager.sendMessage() 发送消息，否则会收到重复的回复信息，因为 `oneShot` 本身就会发起一次请求
+
+### 动态实体
+
+动态实体的数据结构类型为 `EntityRequest` ，具体如下
+
+```
+class EntityRequest implements Serializable {
+
+    // 动态实体类型，格式为 `“org_name” + "." + "agent_name"` ，如“naturali_test.动态实体测试”
+    String typeName = ""
+
+    // 动态实体的key和alias列表，以联系人列表举例，Map的key为联系人名称，如 `李明` ，Map的value为联系人备注列表，如 `[“小明”,"大明"]`
+    HashMap<String, List<String>> values = new HashMap<>()
+}
+```
+
+用户可以创建多个 `EntityRequest` 并 `add` 到 `SpeechExtras` 中。动态实体中的内容，会用于提高语音识别的精准度
 
 ### 语音识别
 
