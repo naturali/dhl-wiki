@@ -1,6 +1,13 @@
 # 目录
 
 * [**概述**](README.md)
+* [**部署**]()
+  * [安装Centos7](Deployment/Centos/Install.md)
+  * [安装Docker](Deployment/Docker/Install.md)
+  * [安装Etcd](Deployment/Etcd/Install.md)
+  * [安装VIP](Deployment/VIP/Install.md)
+  * [安装Kubernetes]()
+    * [安装Kubeadm](Deployment/Kubernetes/Kubeadm.md)
 * [**关键概念**]()
   * [对话机器人](对话机器人.md)
   * [意图技能](意图技能.md)
