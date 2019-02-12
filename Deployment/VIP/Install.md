@@ -1,4 +1,4 @@
-# Install
+# 安装
 
 ```bash
 BasePath=/data/apps/VIP/
@@ -15,11 +15,11 @@ NODE02=172.11.51.202:6443
 NODE03=172.11.51.203:6443
 ```
 
-# Requirements
+# 要求
 
 初级运维即可完成
 
-# Setting
+# 配置
 
 #### 配置文件
 

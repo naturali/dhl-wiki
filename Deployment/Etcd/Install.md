@@ -1,4 +1,4 @@
-# Install
+# 安装
 
 ```bash
 BasePath=/data/apps/etcd/
@@ -18,11 +18,11 @@ NODE02=172.16.190.181
 NODE03=172.16.190.182
 ```
 
-# Requirements
+# 要求
 
 初级运维即可完成
 
-# Setting
+# 配置
 
 #### 配置文件
 

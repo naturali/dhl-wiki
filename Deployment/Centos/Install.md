@@ -1,13 +1,13 @@
-# Install
+# 安装
 
 安装最新的7版本即可\(不需要swap分区） 
 数据盘位置 /data/apps
 
-# Requirements
+# 要求
 
 初级运维即可完成
 
-# Setting
+# 配置
 
 #### 关闭selinux
 

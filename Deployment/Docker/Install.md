@@ -1,4 +1,4 @@
-# Install
+# 安装
 
 ```shell
 export Version=18.06.1.ce-3.el7
@@ -11,11 +11,11 @@ wget http://mirrors.aliyun.com/docker-toolbox/linux/compose/1.21.2/docker-compos
 chmod +x /bin/docker-compose
 ```
 
-# Requirements
+# 要求
 
 初级运维即可完成
 
-# Setting
+# 配置
 
 #### 配置文件
 

@@ -1,4 +1,4 @@
-# Install
+# 安装
 
 ```bash
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -18,11 +18,11 @@ systemctl start  kubelet
 systemctl enable kubelet
 ```
 
-# Requirements
+# 要求
 
 初级运维即可完成
 
-# Setting
+# 配置
 
 #### 配置文件
 
