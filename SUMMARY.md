@@ -12,15 +12,12 @@
 * 使用指南
     * [快速上手](快速上手.md)
     * [机器人配置范例](机器人配置范例.md)
-* 部署
-    * [安装Centos7](Deployment/Centos/Install.md)
-    * [安装Docker](Deployment/Docker/Install.md)
-    * [安装Etcd](Deployment/Etcd/Install.md)
-    * [安装VIP](Deployment/VIP/Install.md)
-    * [安装Kubeadm](Deployment/Kubernetes/Kubeadm.md)
-* SDK 集成
-    * [Android SDK 集成](Android.md)
-    * [IOS SDK 集成](ios.md)
+
+- SDK 集成
+  - [Android SDK 集成](Android.md)
+  - [IOS SDK 集成](ios.md)
+
+* [私有化部署](私有化部署.md)
 * [服务协议](服务协议.md)
 * [隐私协议](隐私协议.md)
 
