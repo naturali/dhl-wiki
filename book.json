@@ -1,56 +1,44 @@
 {
-    "output": null,
-    "generator": "site",
-
-    "title": "对话流文档",
-    "description": "对话流（Conversation Flow Platform），是奇点机智（Naturali）自主研发的语音对话开发平台，旨在让每个企业都可以轻松开发 AI 对话机器人（AI Bots）。无需程序员，企业的产品、运营人员，也能轻松定义、维护完整流畅的 AI 对话。",
-
-    "extension": null,
-
-    "plugins": ["styles-less", "favicon"],
-    "pluginsConfig": {
-        "favicon": {
-            "shortcut": "assets/images/favicon.ico",
-            "bookmark": "assets/images/favicon.ico"
-        }
-    },
-
-    "variables": {},
-
-    "language": "zh-hans",
-
-    "links": {
-
-        "sharing": {
-            "google": false,
-            "facebook": false,
-            "twitter": false,
-            "weibo": false,
-            "all": false
-        }
-    },
-
-
-    "pdf": {
-        "pageNumbers": false,
-
-        "fontSize": 12,
-
-        "paperSize": "a4",
-
-        "margin": {
-            "right": 62,
-            "left": 62,
-            "top": 36,
-            "bottom": 36
-        },
-
-        "headerTemplate": null,
-
-        "footerTemplate": null
-    },
-
-    "styles": {
-        "website": "./styles/website.less"
+  "output": null,
+  "generator": "site",
+  "title": "对话流文档",
+  "description": "对话流（Conversation Flow Platform），是奇点机智（Naturali）自主研发的语音对话开发平台，旨在让每个企业都可以轻松开发 AI 对话机器人（AI Bots）。无需程序员，企业的产品、运营人员，也能轻松定义、维护完整流畅的 AI 对话。",
+  "extension": null,
+  "plugins": [
+    "styles-less",
+    "favicon"
+  ],
+  "pluginsConfig": {
+    "favicon": {
+      "shortcut": "assets/images/favicon.ico",
+      "bookmark": "assets/images/favicon.ico"
     }
+  },
+  "variables": {},
+  "language": "zh-hans",
+  "links": {
+    "sharing": {
+      "google": false,
+      "facebook": false,
+      "twitter": false,
+      "weibo": false,
+      "all": false
+    }
+  },
+  "pdf": {
+    "pageNumbers": false,
+    "fontSize": 12,
+    "paperSize": "a4",
+    "margin": {
+      "right": 62,
+      "left": 62,
+      "top": 36,
+      "bottom": 36
+    },
+    "headerTemplate": null,
+    "footerTemplate": null
+  },
+  "styles": {
+    "website": "./styles/website.less"
+  }
 }

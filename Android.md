@@ -12,7 +12,7 @@
 
 **1、系统要求**
 
-```
+```java
 minSdkVersion 21
 
 ndk {
@@ -30,7 +30,7 @@ compileOptions {
 
 首先从网站上下载 `DHL_sdk_android_common_xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` :
 
-```
+```java
 repositories {
     flatDir {
         // 指定 `aar` 文件的目录
@@ -78,7 +78,7 @@ dependencies {
 
 在整个工程的最外层 `build.gradle` 中配置 `version` 和 `repositories` :
 
-```
+```java
 allprojects {
     repositories {
         // DBFlow
@@ -104,7 +104,7 @@ ext {
 
 在 `AndroidManifest.xml` 中加入以下配置:
 
-```
+```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="xxx.xxx.xxx">
@@ -147,7 +147,7 @@ ext {
 
 在 `Application.onCreate()` 方法中初始化：
 
-```
+```java
 public class BaseApplication extends Application {
 
     /**
@@ -164,7 +164,7 @@ public class BaseApplication extends Application {
 
 在用户 **登陆** 之后初始化用户信息，每次切换用户需要重新初始化，避免数据混乱：
 
-```
+```java
 // user id 用于标识当前用户的唯一id，由调用方生成，自行维护
 // user name 选填，可以不填，用于后台一些可视化界面的提示
 UserInfo info = new UserInfo("userId", "userName");
@@ -177,7 +177,7 @@ MessageManager.initUserInfo(info);
 
 * SDK 的消息发送对象均为 `MessageRequest` ，通过Builder模式生成。消息的类型根据 `video > audio > image > text` 的优先级自动判断，如果四个域均未赋值，则视为无效请求，不进行发送操作。创建一条消息的方法为：
 
-    ```
+    ```java
     MessageRequest request = new MessageRequest.Builder()
         .agentId("agent id") // 当前 agent id，必填
         .agentName("") // 当前 agent 名字，用于后台可视化信息，选填
@@ -192,25 +192,39 @@ MessageManager.initUserInfo(info);
         .forceHandleManually(false) // 是否强制跳转人工客服，默认为 false
         .requestType(MessageRequest.TYPE_NORMAL) // 请求类型，通常为Normal，可不填
         .addEntityRequest(entityRequest) // 添加动态实体，可添加多条
-        .build() // 生成 MessageRequest 实例，用于传入 MessageManager.sendMessage() 中
+        .addGlobalAttribute(attributeRequest) // 添加全局属性，可添加多条
+        .addLocalAttribute(attributeRequest) // 添加本地属性，可添加多条
+        .intentName("") // 设置已知意图名称，与 attribute 配合使用
+        .build(); // 生成 MessageRequest 实例，用于传入 MessageManager.sendMessage() 中
     ```
 
-* 动态实体的数据结构类型为 `EntityRequest` ，具体如下
+* 动态实体*(Entity)*的数据结构类型为 `EntityRequest` ，具体如下
 
-    ```
+    ```java
     class EntityRequest implements Serializable {
 
         // 动态实体类型，格式为 `“org_name” + "." + "agent_name"` ，如“naturali_test.动态实体测试”
-        String typeName = ""
+        String typeName = "";
 
         // 动态实体的key和alias列表，以联系人列表举例，Map的key为联系人名称，如 `李明` ，Map的value为联系人备注列表，如 `[“小明”,"大明"]`
-        HashMap<String, List<String>> values = new HashMap<>()
+        HashMap<String, List<String>> values = new HashMap<>();
+    }
+    ```
+
+* 属性*(Attribute)*的类型为 `AttributeRequest` ，具体如下
+
+    ```java
+    class AttributeRequest : Serializable {
+
+        String name = ""; // 属性名称
+
+        String value = ""; // 属性取值
     }
     ```
 
 * 创建一个MessageManager实例，发送和接收消息。发送的消息会先存到数据库中，并回调 `onReceive()` 方法返回 `MessageResult` ，因此我们推荐使用 `MessageResult` 作为 UI 显示的对象。当信息发送成功后，会再次更新数据库，并回调 `onReceive()` 方法返回同一个 `MessageResult` ，请注意对MessageResult进行去重和状态的判断，MessageResult 的 id 相同即为同一条消息。
 
-    ```
+    ```java
     // 创建 MessageManager 实例
     final MessageManager manager = new MessageManager("agent id");
 
@@ -280,7 +294,7 @@ MessageManager.initUserInfo(info);
 
 首先从网站上下载 `DHL_sdk_android_speech_xxxxx.aar` 并复制到主工程中与 `src` 目录平级的 `libs` 目录下，并在主工程的 `build.gradle` 文件中添加 `dependencies` ：
 
-```
+```java
 repositories {
     flatDir {
         // 指定 `aar` 文件的目录
@@ -302,7 +316,7 @@ dependencies {
 
 在整个工程的最外层 `build.gradle` 中配置 `version` 和 `repositories` :
 
-```
+```java
 ext {
     // 三方库文件的版本信息
     kotlinVersion = "1.3.10"
@@ -314,7 +328,7 @@ ext {
 
 在 `AndroidManifest.xml` 中加入以下配置:
 
-```
+```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="xxx.xxx.xxx">
@@ -361,7 +375,7 @@ ext {
 
 在 `Application.onCreate()` 方法中初始化：
 
-```
+```java
 public class BaseApplication extends Application {
 
     /**
@@ -380,7 +394,7 @@ public class BaseApplication extends Application {
 
 ### 配置参数
 
-```
+```java
 Bundle bundle = new SpeechExtras.Builder()
     .agentId("agent id") // 当前 agent id
     .userId("user id") // 当前用户 user id
@@ -394,16 +408,16 @@ Bundle bundle = new SpeechExtras.Builder()
 
 ### 动态实体
 
-动态实体的数据结构类型为 `EntityRequest` ，具体如下
+动态实体*(Entity)*的数据结构类型为 `EntityRequest` ，具体如下
 
-```
+```java
 class EntityRequest implements Serializable {
 
     // 动态实体类型，格式为 `“org_name” + "." + "agent_name"` ，如“naturali_test.动态实体测试”
-    String typeName = ""
+    String typeName = "";
 
     // 动态实体的key和alias列表，以联系人列表举例，Map的key为联系人名称，如 `李明` ，Map的value为联系人备注列表，如 `[“小明”,"大明"]`
-    HashMap<String, List<String>> values = new HashMap<>()
+    HashMap<String, List<String>> values = new HashMap<>();
 }
 ```
 
@@ -413,7 +427,7 @@ class EntityRequest implements Serializable {
 
 调用 `SpeechRecognizerWrapper.getInstance().start(SpeechListener listener, Bundle bundle)` 开始麦克风收音
 
-```
+```java
 // 开始语音识别
 SpeechRecognizerWrapper.getInstance().start(new SpeechListener() {
 
@@ -467,8 +481,8 @@ SpeechRecognizerWrapper.getInstance().start(new SpeechListener() {
 }, bundle);
 
 // 停止语音识别
-SpeechRecognizerWrapper.getInstance().stop()
+SpeechRecognizerWrapper.getInstance().stop();
 
 // 取消语音识别
-SpeechRecognizerWrapper.getInstance().cancel()
+SpeechRecognizerWrapper.getInstance().cancel();
 ```
