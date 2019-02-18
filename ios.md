@@ -6,7 +6,7 @@ KerfuSDK可通过CocoaPods和工程引入两种方式集成，若集成方工程
 
 在`Podfile`文件中增加KerfuSDK的pod
 
-```
+```objectivec
 pod 'KerfuSDK'
 ```
 
@@ -44,16 +44,16 @@ Protobuf为非ARC模式，所以要将本次引入的所有\*.m文件的编译�
 引入`KerfuSDK.h`头文件
 SDK初始化代码如下：
 
-```
+```objectivec
 //注册sdk
-    [KerfuSDK registerAppId:@"yourAppId"
-                        appKey:@"yourAppKey"
-                     appSecret:@"yourAppSecret"];
+[KerfuSDK registerAppId:@"yourAppId"
+                 appKey:@"yourAppKey"
+              appSecret:@"yourAppSecret"];
 ```
 
 在集成方账号体系中的用户登录后，需要将该用户id设置为与本SDK服务器对话的用户id：
 
-```
+```objectivec
 //设置userId,发送消息的用户id
 [KerfuSDK setUserId:@"yourUserId"];
 ```
@@ -67,36 +67,32 @@ SDK需要访问麦克风权限，若您未设置麦克风权限，请在您工�
 
 至此，您可以愉快地使用KerfuSDK了。
 
-
-
 # KerfuSDK接口文档
-
-
 
 ###SDK初始化
 
 引用头文件
 
-```
+```objectivec
 #import <KerfuSDK.h>
 ```
 注册SDK
 
-```
+```objectivec
 [KerfuSDK registerAppId:@"yourAppId"
-                    appKey:@"yourAppKey"
-                 appSecret:@"yourAppSecret"];
+                 appKey:@"yourAppKey"
+              appSecret:@"yourAppSecret"];
 ```
 
 设置默认的用户id
 
-```
+```objectivec
 //设置userId,发送消息的用户id
-    [KerfuSDK setUserId:@"myUserId"];
+[KerfuSDK setUserId:@"myUserId"];
 ```
 添加动态实体
 
-```
+```objectivec
 KFDynamicEntityValue *value1 = [KFDynamicEntityValue new];
 value1.keyword = @"keyword1";
 value1.aliases = @[@"alias1",@"alias2"];
@@ -118,32 +114,32 @@ entity.values = @[value1,value2,value3];
 ###语音识别
 创建语音识别器并设置代理对象，回调将通过代理对象返回。
 
-```
+```objectivec
 self.recognizer = [[KFSpeechRecognizer alloc] initWithDelegate:self];
 ```
 开始录音
 
-```
+```objectivec
 [self.recognizer startRecording];
 ```
 或者直接开始语音使用对话流
 
-```
+```objectivec
 [self.recognizer startDialogRecordingWithAgentId:self.agentIdLabel.text];
 ```
 结束录音
 
-```
+```objectivec
 [self.recognizer stopRecording];
 ```
 中途取消录音
 
-```
+```objectivec
 [self.recognizer cancelRecording];
 ```
 实现语音识别的回调方法
 
-```
+```objectivec
 - (void)onCompleted:(NSError *)error {
     //语音录制结束，若无异常，则error为nil
     NSLog(@"speech recognizer complete with error : %@",error);
@@ -156,7 +152,7 @@ self.recognizer = [[KFSpeechRecognizer alloc] initWithDelegate:self];
 ```
 其他可选监听回调
 
-```
+```objectivec
 optional
 
 /*!
@@ -181,12 +177,12 @@ optional
 ###对话流
 设置对话流的代理对象，用于接收对话消息.
 
-```
+```objectivec
 [KFDialogManager sharedInstance].delegate = self;
 ```
 发送对话流消息,至少需要文本和agentId参数
 
-```
+```objectivec
 KFDialogRequest *request = [[KFDialogRequest alloc] init];
 request.query = query;
 request.agentId = self.agentIdLabel.text;
@@ -200,7 +196,7 @@ request.agentId = self.agentIdLabel.text;
 ```
 监听发送成功的消息内容和接收到的消息内容
 
-```
+```objectivec
 #pragma mark - dialog manager delegate
 - (void)didReceiveResponse:(KFDialogResponse *)response {
     //接收对话流消息，可能包含文本和多媒体资源地址.
@@ -215,8 +211,8 @@ request.agentId = self.agentIdLabel.text;
 
 结束并重置与指定agent的对话上下文
 
-```
+```objectivec
  [[KFDialogManager sharedInstance] endConversationWithAgentId:self.agentIdLabel.text compeltion:^(BOOL success, NSError *error, NSString *requestId) {
         NSLog(@"conversation end:%@ , \nerror:%@",success ? @"yes" : @"no", error);
-    }];
+}];
 ```

@@ -6,12 +6,20 @@
   "extension": null,
   "plugins": [
     "styles-less",
+    "prism",
+    "prism-themes",
+    "-highlight",
     "favicon"
   ],
   "pluginsConfig": {
     "favicon": {
       "shortcut": "assets/images/favicon.ico",
       "bookmark": "assets/images/favicon.ico"
+    },
+    "prism": {
+      "css": [
+        "prism-themes/themes/prism-a11y-dark.css"
+      ]
     }
   },
   "variables": {},
