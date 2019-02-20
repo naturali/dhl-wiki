@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package dhl;
+
+option go_package = "p";
+
+option java_multiple_files = true;
+option java_package = "io.naturali.common.dhl";
+
+message TextResponse {
+    repeated string contents = 1;
+}
+
+message CardResponse {
+    string title = 1;
+    string description = 2;
+    string image_url = 3;
+    string deep_link = 4;
+    string script = 5;
+    string pre_card_text = 6;
+    string post_card_text = 7;
+}
+

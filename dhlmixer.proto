@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package dhlmixer;
+
+import "dhl.proto";
+import "dynamic_entity.proto";
+import "filled_attribute.proto";
+
+option go_package = "p";
+
+option java_multiple_files = true;
+option java_package = "io.naturali.common.dhl";
+
+message SpeechData {
+    string app_id = 1;
+    int32 eof = 2; // 0 for voice data; -1 for end of voice
+	bytes raw_data = 3;
+	string audio_type = 4;
+	string user_id = 5;
+	string user_info = 6;
+	string platform_type = 7;
+	string agent_id = 8;
+	string agent_name = 9;
+	string user_name = 10;
+	string data = 11;
+	bool one_shot = 12;
+	DHLMixerRequestData request_data = 13;
+}
+
+message SpeechResult {
+    int32 eof = 1; // 0 for partial speech result; -1 for speech result
+	string result = 2;
+	string voice_url = 3;
+	oneof dhl_response {
+        KerfuError dhl_error = 4;
+        KerfuResponse response = 5;
+    }
+}
+
+enum KerfuMessageType {
+    Any = 0;
+    Request = 1;
+    Response = 2;
+    PhantomResponse = 4;
+}
+
+enum MessageContentType {
+    Text = 0;
+    Image = 1;
+    Voice = 2;
+    Video = 3;
+    Script = 4;
+}
+
+enum ResponseType {
+    Auto = 0;
+    SemiAuto = 1;
+    Manually = 2;
+}
+
+message DHLMixerRequestData {
+    string req_id = 1;
+    string message = 2;
+    string voice_url = 3;
+    string resource_url = 4;
+    MessageContentType message_content_type = 5;
+    bool force_handle_manually = 6;
+    dhl.DHLRequestType dhl_request_type = 7; // dhl request type; reference dhl.proto
+    repeated dhl.DynamicEntity dynamic_entities = 8;
+    repeated dhl.FilledAttribute global_attributes = 9;
+    string intent_name = 10;
+    repeated dhl.FilledAttribute local_attributes = 11;
+}
+
+message DHLMixerResponseData {
+    string req_id = 1;
+    string message = 2;
+    string resource_url = 3;
+    MessageContentType message_content_type = 4;
+    ResponseType response_type = 5;
+    dhl.DHLScript dhl_script = 6;
+    string support_platform = 7;
+    string support_app = 8;
+    string support_uid = 9;
+}
+
+message KerfuMessage {
+    int64 message_id = 1;
+    int32 session_id = 2;
+    KerfuMessageType message_type = 3;
+    string platform_type = 4; // dhl_sdk_ios; dhl_sdk_android; wechat_open_platform; wechat_mini_program
+    string app_id = 5;
+    string user_id = 6;
+    string user_name = 7;
+    string agent_id = 8;
+    string agent_name = 9;
+    int64 timestamp = 10;
+    oneof content {
+        DHLMixerRequestData request = 11;
+        DHLMixerResponseData response = 12;
+    }
+}
+
+message KerfuError {
+   int32 error_code = 1;
+   string error_message = 2;
+}
+
+message KerfuMessageAck {
+    int32 session_id = 1;
+    int64 message_id = 2;
+    int64 timestamp = 3;
+}
+
+message KerfuResponse {
+    KerfuMessageAck ack = 1;
+    repeated KerfuMessage messages = 2;
+}
+
+message KerfuMessageFilter {
+    int32 session_id = 1;
+    int64 message_id = 2;
+    int64 before = 3;
+    int64 after = 4;
+    int32 page = 5; // default 0
+    int32 page_size = 6; // default 10
+    KerfuMessageType message_type = 7;
+}
+
+message KerfuMessageList {
+    repeated KerfuMessage messages = 1;
+}
+
+enum Action {
+    Authentication = 0;
+    EndConversation = 1;
+}
+
+enum Event {
+    ActionReply = 0;
+    MessagePosted = 1;
+}
+
+message KerfuAuthenticationData {
+    string platform_type = 1;
+    string app_id = 2;
+    string user_id = 3;
+    bool is_support = 4;
+}
+
+message EndConversationData {
+    string platform_type = 1;
+    string app_id = 2;
+    string user_id = 3;
+    string agent_id = 4;
+}
+
+message KerfuAction {
+    string seq = 1;
+    Action action = 2;
+    oneof data {
+        KerfuAuthenticationData authentication_data = 3;
+        EndConversationData end_conversation_data = 4;
+    }
+}
+
+message KerfuReplyEventData {
+    string seq_reply = 1;
+    string status = 2;
+}
+
+message KerfuMessagePostedEventData {
+    int32 session_id = 1;
+    int64 message_id = 2;
+    KerfuMessageType message_type = 3;
+}
+
+message KerfuEvent {
+    Event event = 1;
+    oneof data {
+        KerfuReplyEventData reply_event_data = 2;
+        KerfuMessagePostedEventData message_posted_data = 3;
+    }
+}
+
+message AuthenticationParams {
+    string app_id = 1;
+    string app_key = 2;
+    string app_secret = 3;
+}
+
+message AccessToken {
+    string access_token = 2;
+}

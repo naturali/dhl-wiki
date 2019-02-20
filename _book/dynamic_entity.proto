@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package dhl;
+
+option go_package = "p";
+
+option java_multiple_files = true;
+option java_package = "io.naturali.common.dhl";
+
+message DynamicEntityValue {
+    string keyword = 1;
+    repeated string aliases = 2;
+}
+
+message DynamicEntity {
+    string type_name = 1;
+    repeated DynamicEntityValue values = 2;
+}

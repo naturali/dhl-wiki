@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package dhl;
+
+option java_multiple_files = true;
+option java_package = "io.naturali.common.dhl";
+
+message FilledAttribute {
+    string name = 1;
+    string value = 2;
+    int64 timestamp = 3;
+}
