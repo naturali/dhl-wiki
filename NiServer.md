@@ -6,15 +6,19 @@
 
 ## 准备工作
 
-**1、申请Api Key**
+**1、服务地址**
+
+https://<span></span>dhlmixer.naturali.io
+
+**2、申请Api Key**
 
 使用对话流 Restful Api 之前请先确保在对话流平台注册并申请了Api Key
 
-**2、数据格式**
+**3、数据格式**
 
 对话流 Restful Api 的数据格式采用了protobuf，请下载proto文件并生成相应语言的代码以供使用
 
-共有以下四个proto文件:
+共有以下五个proto文件:
 
 [dhlmixer.proto](#dhlmixer)
 
@@ -30,29 +34,33 @@
 
 ```protoc -I ./ --go_out=plugins=grpc:./ dhlmixer.proto dhl.proto filled_attribute.proto dynamic_entity.proto dhl_response.proto```
 
+**4、platform type**
+
+使用对话流 Restful Api，请在参数中存在platform_type的时候传入参数值 dhl_restful，例如[KerfuMessage](#KerfuMessage)中的platform_type
+
 ## Api概览
 
 | API | 描述 |
 | :------ | :------ |
-| QueryWithKerfuMessage | 发送信息给对话流系统 |
-| GetKerfuMessages | 获取信息历史记录 |
-| EventConnection | websocket长连接，用于发送和接收控制信息 |
-| Speech | 语音识别 |
-| GetAccessToken | 获取访问对话流系统的access token |
+| [QueryWithKerfuMessage](#QueryWithKerfuMessage) | 发送信息给对话流系统 |
+| [GetKerfuMessages](#GetKerfuMessages) | 获取信息历史记录 |
+| [EventConnection](#EventConnection) | websocket长连接，用于发送和接收控制信息 |
+| [Speech](#Speech) | 语音识别 |
+| [GetAccessToken](#GetAccessToken) | 获取访问对话流系统的access token |
 
 一个典型的对话流客户端应该以下述流程运行：
 
-**1、调用 GetAccessToken 获取token**
+**1、调用 [GetAccessToken](#GetAccessToken) 获取token**
 
-**2、调用 QueryWithKerfuMessage 向对话流系统发起请求，并解析响应**
+**2、调用 [QueryWithKerfuMessage](#QueryWithKerfuMessage) 向对话流系统发起请求，并解析响应**
 
-**3、调用 EventConnection 发起长连接监听系统推送的事件**
+**3、调用 [EventConnection](#EventConnection) 发起长连接监听系统推送的事件**
 
-**4、收到新消息通知时调用 GetKerfuMessages 获取对话流系统主动推送的最新消息**
+**4、收到新消息通知时调用 [GetKerfuMessages](#GetKerfuMessages) 获取对话流系统主动推送的最新消息**
 
 ## 访问控制
 
-调用对话流 Restful Api 需要在每个请求头中携带被授权的 access token，获取token的方法详见 Api GetAccessToken 的说明。
+调用对话流 Restful Api 需要在每个请求头中携带被授权的 access token，获取token的方法详见 Api [GetAccessToken](#GetAccessToken) 的说明。
 access token 为JWT格式，每一个新获取的token的有效期为24小时，过期后无法使用，需重新获取token。
 使用token的方式为在请求头中添加Authorization，例如:
 
@@ -64,7 +72,7 @@ http请求需在每一个请求中添加Authorization请求头，websocket请求
 
 参数列表以及返回值均为protobuf，可以参考proto文件
 
-**1、QueryWithKerfuMessage**
+**1、<span id="QueryWithKerfuMessage">QueryWithKerfuMessage</span>**
 
 向对话流发送信息，并获取对话流系统的回复
 
@@ -78,9 +86,9 @@ Content-Type: application/protobuf
 
 请求参数: [KerfuMessage](#KerfuMessage)
 
-返回值: KerfuResponse
+返回值: [KerfuResponse](#KerfuResponse)
 
-**2、GetKerfuMessages**
+**2、<span id="GetKerfuMessages">GetKerfuMessages</span>**
 
 获取信息历史记录，可以用来通过系统推送的MessageId获取系统主动推送的信息内容
 
@@ -107,9 +115,9 @@ Authorization: $access_token$
 
 \* message_type为int32类型，具体类型参考proto文件
 
-返回值: KerfuMessageList
+返回值: [KerfuMessageList](#KerfuMessageList)
 
-**3、EventConnection**
+**3、<span id="EventConnection">EventConnection</span>**
 
 websocket长连接，用来获取和发送一些控制信号
 
@@ -127,11 +135,11 @@ Sec-WebSocket-Protocol: event_action
 
 收发数据
 
-发送: KerfuAction (message_type: BinaryMessage)
+发送: [KerfuAction](#KerfuAction) (message_type: BinaryMessage)
 
-接收: KerfuEvent
+接收: [KerfuEvent](#KerfuEvent)
 
-**4、Speech**
+**4、<span id="Speech">Speech</span>**
 
 websocket长连接，可以用来上传语音数据(pcm/mp3/flac)获取语音识别结果，也可以使用语音数据调用对话流系统并获得对话流系统的响应
 
@@ -149,11 +157,11 @@ Sec-WebSocket-Protocol: speech
 
 收发数据
 
-发送: SpeechData (message_type: BinaryMessage)
+发送: [SpeechData](#SpeechData) (message_type: BinaryMessage)
 
-接收: SpeechResult
+接收: [SpeechResult](#SpeechResult)
 
-**5、GetAccessToken**
+**5、<span id="GetAccessToken">GetAccessToken</span>**
 
 通过对话流系统分配的 app_key 和 app_secret 来获取访问其他api所需的access token
 
@@ -164,9 +172,9 @@ POST /v1/access_token HTTP/1.1
 Content-Type: application/protobuf
 ```
 
-请求参数: AuthenticationParams
+请求参数: [AuthenticationParams](#AuthenticationParams)
 
-返回值: AccessToken
+返回值: [AccessToken](#AccessToken)
 
 ## proto数据结构说明
 
@@ -178,7 +186,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | :------ | :------ | :------ |
 | message_id | int64 | 消息id |
 | session_id | int32 | 消息所属session的id |
-| message_type | KerfuMessageType | 消息类型 |
+| message_type | [KerfuMessageType](#KerfuMessageType) | 消息类型 |
 | platform_type | string | 用户所属平台标识 |
 | app_id | string | 用户所属org标识 |
 | user_id | int64 | 用户唯一id |
@@ -186,46 +194,46 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | agent_id | string | 用户对话的agent的唯一标识 |
 | agent_name | string | 用户对话的agent显示名 |
 | timestamp | string | 时间戳 |
-| request | DHLMixerRequestData | 用户发送的消息数据，仅出现于向对话流系统发起的请求消息中 |
-| response | DHLMixerResponseData | 对话流发送的响应数据，仅出现在对话流系统的响应消息中 |
+| request | [DHLMixerRequestData](#DHLMixerRequestData) | 用户发送的消息数据，仅出现于向对话流系统发起的请求消息中 |
+| response | [DHLMixerResponseData](#DHLMixerResponseData) | 对话流发送的响应数据，仅出现在对话流系统的响应消息中 |
 
 \* request 和 response 只会出现其中之一
 
-**2、KerfuResponse**
+**2、<span id="KerfuResponse">KerfuResponse</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
-| ack | KerfuMessageAck | 发送消息的ack |
-| messages | repeated KerfuMessage | 响应消息列表 |
+| ack | [KerfuMessageAck](#KerfuMessageAck) | 发送消息的ack |
+| messages | repeated [KerfuMessage](#KerfuMessage) | 响应消息列表 |
 
-**3、KerfuMessageList**
+**3、<span id="KerfuMessageList">KerfuMessageList</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
-| messages | repeated KerfuMessage | 消息列表 |
+| messages | repeated [KerfuMessage](#KerfuMessage) | 消息列表 |
 
-**4、KerfuAction**
+**4、<span id="KerfuAction">KerfuAction</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | seq | string | 发送消息的ack |
-| action | Action | action类型 |
-| authentication_data | KerfuAuthenticationData | 认证数据 |
-| end_conversation_data | EndConversationData | 结束对话数据 |
+| action | [Action](#Action) | action类型 |
+| authentication_data | [KerfuAuthenticationData](#KerfuAuthenticationData) | 认证数据 |
+| end_conversation_data | [EndConversationData](#EndConversationData) | 结束对话数据 |
 
 \* authentication_data 和 end_conversation_data 只会出现其中之一
 
-**5、KerfuEvent**
+**5、<span id="KerfuEvent">KerfuEvent</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
-| event | Event | 事件类型 |
-| reply_event_data | KerfuReplyEventData | 对于action的响应的数据 |
-| message_posted_data | KerfuMessagePostedEventData | 新消息提醒，收到这个数据需要去主动拉取最新消息 |
+| event | [Event](#Event) | 事件类型 |
+| reply_event_data | [KerfuReplyEventData](#KerfuReplyEventData) | 对于action的响应的数据 |
+| message_posted_data | [KerfuMessagePostedEventData](#KerfuMessagePostedEventData) | 新消息提醒，收到这个数据需要去主动拉取最新消息 |
 
 \* reply_event_data 和 message_posted_data 只会出现其中之一
 
-**6、SpeechData**
+**6、<span id="SpeechData">SpeechData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -239,18 +247,18 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | agent_name | string | 用户对话的agent名称 |
 | user_name | string | 用户名，用于显示 |
 | one_shot | bool | 是否在语音识别结束之后直接使用结果向对话流系统发起请求 |
-| request_data | DHLMixerRequestData | 对话流请求数据 |
+| request_data | [DHLMixerRequestData](#DHLMixerRequestData) | 对话流请求数据 |
 
-**7、SpeechResult**
+**7、<span id="SpeechResult">SpeechResult</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | eof | int32 | 0 : 部分语音识别结果; -1 : 语音识别最终结果以及对话流请求响应 |
 | result | string | 语音识别结果 |
-| dhl_error | KerfuError | 对话流请求失败的错误提示 |
-| response | KerfuResponse | 对话流请求响应数据 |
+| dhl_error | [KerfuError](#KerfuError) | 对话流请求失败的错误提示 |
+| response | [KerfuResponse](#KerfuResponse) | 对话流请求响应数据 |
 
-**8、AuthenticationParams**
+**8、<span id="AuthenticationParams">AuthenticationParams</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -258,13 +266,13 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | app_key | string | 向对话流平台申请的 app_key |
 | app_secret | string | 对话流平台生成的 app_secret |
 
-**9、AccessToken**
+**9、<span id="AccessToken">AccessToken</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | access_token | string | 访问 restful api 时所需的token |
 
-**10、KerfuMessageType**
+**10、<span id="KerfuMessageType">KerfuMessageType</span>**
 
 \* 枚举类型
 
@@ -275,7 +283,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | Response | 2 | 对话流响应 |
 | PhantomResponse | 3 | 对话流响应但不直接展示给用户，可能是需要人工确认的响应等等 |
 
-**11、DHLMixerRequestData**
+**11、<span id="DHLMixerRequestData">DHLMixerRequestData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -283,7 +291,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | message | string | 请求内容 |
 | voice_url | string | 请求内容音频url |
 | resource_url | string | 请求消息资源url，用于图片视频等非文本类型的请求中 |
-| message_content_type | MessageContentType | 请求消息类型，可能是文本、图片等 |
+| message_content_type | [MessageContentType](#MessageContentType) | 请求消息类型，可能是文本、图片等 |
 | force_handle_manually | bool | 是否强制要求人工服务 |
 | dhl_request_type | dhl.DHLRequestType | 对话流请求类型，参见dhl.proto |
 | dynamic_entities | repeated dhl.DynamicEntity | 动态实体，参见dhl.proto |
@@ -291,21 +299,21 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | intent_name | string | 意图名 |
 | local_attributes | repeated dhl.FilledAttribute | 属性，参见dhl.proto |
 
-**12、DHLMixerResponseData**
+**12、<span id="DHLMixerResponseData">DHLMixerResponseData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | req_id | string | 请求id |
 | message | string | deprecated |
 | resource_url | string | 响应消息资源url，用于图片视频等非文本类型的响应中 |
-| message_content_type | MessageContentType | 响应消息类型，可能是文本、图片等 |
-| response_type | ResponseType | 响应类型，可能是自动响应、人工响应等 |
+| message_content_type | [MessageContentType](#MessageContentType) | 响应消息类型，可能是文本、图片等 |
+| response_type | [ResponseType](#ResponseType) | 响应类型，可能是自动响应、人工响应等 |
 | dhl_script | dhl.DHLScript | 对话流系统的响应数据，参见dhl.proto |
 | support_platform | string | 人工客服平台 |
 | support_app | string | deprecated |
 | support_uid | string | 人工客服id |
 
-**13、KerfuMessageAck**
+**13、<span id="KerfuMessageAck">KerfuMessageAck</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -313,7 +321,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | message_id | int64 | 消息id |
 | timestamp | int64 | 服务端时间戳 |
 
-**14、Action**
+**14、<span id="Action">Action</span>**
 
 \* 枚举类型
 
@@ -322,7 +330,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | Authentication | 0 | 客户端鉴权请求 |
 | EndConversation | 1 | 客户端结束对话请求 |
 
-**15、KerfuAuthenticationData**
+**15、<span id="KerfuAuthenticationData">KerfuAuthenticationData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -331,7 +339,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | user_id | string | 用户id |
 | is_support | bool | 是否客服连接，用户端传false |
 
-**16、EndConversationData**
+**16、<span id="EndConversationData">EndConversationData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
@@ -340,7 +348,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | user_id | string | 用户id |
 | agent_id | string | agent标识 |
 
-**17、Event**
+**17、<span id="Event">Event</span>**
 
 \* 枚举类型
 
@@ -349,29 +357,29 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | ActionReply | 0 | 对于客户端请求的回复 |
 | MessagePosted | 1 | 有新消息需要拉取 |
 
-**18、KerfuReplyEventData**
+**18、<span id="KerfuReplyEventData">KerfuReplyEventData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | seq_reply | string | 客户端请求id |
 | status | string | 客户端请求是否成功 |
 
-**19、KerfuMessagePostedEventData**
+**19、<span id="KerfuMessagePostedEventData">KerfuMessagePostedEventData</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | session_id | int32 | 新消息所属session标识 |
 | message_id | int64 | 新消息id |
-| message_type | KerfuMessageType | 新消息类型 |
+| message_type | [KerfuMessageType](#KerfuMessageType) | 新消息类型 |
 
-**20、KerfuError**
+**20、<span id="KerfuError">KerfuError</span>**
 
 | 名称 | 类型 | 描述 |
 | :------ | :------ | :------ |
 | error_code | int32 | 错误码 |
 | error_message | string | 错误描述 |
 
-**21、MessageContentType**
+**21、<span id="MessageContentType">MessageContentType</span>**
 
 \* 枚举类型
 
@@ -383,7 +391,7 @@ KerfuMessage是发送给对话流系统的消息以及对话流系统的响应�
 | Video | 3 | 视频消息 |
 | Script | 4 | 脚本消息，见于对话流系统的响应中 |
 
-**22、ResponseType**
+**22、<span id="ResponseType">ResponseType</span>**
 
 \* 枚举类型
 
@@ -488,7 +496,7 @@ message KerfuMessage {
     int64 message_id = 1;
     int32 session_id = 2;
     KerfuMessageType message_type = 3;
-    string platform_type = 4; // dhl_sdk_ios; dhl_sdk_android; wechat_open_platform; wechat_mini_program
+    string platform_type = 4; // dhl_sdk_ios; dhl_sdk_android; wechat_open_platform; wechat_mini_program; dhl_restful;
     string app_id = 5;
     string user_id = 6;
     string user_name = 7;
