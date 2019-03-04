@@ -20,5 +20,6 @@
     * [IOS SDK 集成](ios.md)
     * [Restful Api](NiServer.md)
 * [私有化部署](私有化部署.md)
+* [服务协议](服务协议.md)
+* [隐私协议](隐私协议.md)
 
-    
