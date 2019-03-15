@@ -270,7 +270,7 @@ MessageManager.initUserInfo(info);
 | Int | getStatus | 获取消息状态<br>MessageResult.STATUS_DONE = 0 消息发送成功<br>MessageResult.STATUS_CREATED = 1 消息创建<br>MessageResult.STATUS_FAILED = 2 消息发送失败 |
 | MessageContent | getContent | 获取消息内容 详见下节 |
 
-* MessageContent 参数说明
+* MessageContent 属性说明
 
 **注：** 每条收到的消息都可能有备选选项，通过 `getCandidates` 获取
 
@@ -281,6 +281,17 @@ MessageManager.initUserInfo(info);
 | 音频消息 | getAudioUrl 音频链接 |
 | 视频消息 | getVideoUrl 视频链接 |
 | 链接消息 | getTitle 链接标题<br>getDescription 链接描述<br>getScript 链接需要注入的JavaScript脚本<br>getUrl 链接（以 `http` 或者 `https` 开头为网页链接，其他的为Android deeplink） |
+| 卡片列表 | getListCard 返回一个 `ListCard[]` 数组类型的对象<br>getTitle 卡片列表标题 |
+
+* ListCard 属性说明
+
+| 返回类型 | 接口 | 说明 |
+| - | - | - |
+| String | getTitle | 获取卡片标题 |
+| String | getAvatar | 获取卡片图标 |
+| String | getDescription | 获取卡片描述 |
+| String | getLink | 获取跳转链接 |
+| String | getScript | 获取链接注入的script |
 
 ## 语音识别模块集成
 
