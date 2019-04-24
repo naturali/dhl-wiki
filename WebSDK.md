@@ -1,6 +1,8 @@
-# DHL Web SDK
+# DHL Web 集成 SDK
 
-Use to create your DHL(Dui Hua Liu) web client.
+web 集成
+
+用于构建对话流web客户端（暂不支持node js）
 
 ## 📦 Install
 

@@ -16,7 +16,7 @@
 * 集成
     * [Android SDK 集成](Android.md)
     * [IOS SDK 集成](ios.md)
-    * [JS SDK 集成](WebSDK.md)
+    * [Web 集成](WebSDK.md)
     * [Restful Api](NiServer.md)
 * [私有化部署](私有化部署.md)
 * [服务协议](服务协议.md)
