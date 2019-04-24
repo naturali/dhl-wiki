@@ -1,0 +1,796 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>JS SDK 集成 · 对话流文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism-a11y-dark.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="website-1556095792301.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="NiServer.html" />
+    
+    
+    <link rel="prev" href="ios.html" />
+    
+
+    
+        <link rel="shortcut icon" href='assets/images/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='assets/images/favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    关键概念
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="对话机器人.html">
+            
+                <a href="对话机器人.html">
+            
+                    
+                    对话机器人
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="意图技能.html">
+            
+                <a href="意图技能.html">
+            
+                    
+                    意图技能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="语义结构.html">
+            
+                <a href="语义结构.html">
+            
+                    
+                    语义结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="基础实体.html">
+            
+                <a href="基础实体.html">
+            
+                    
+                    基础实体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="参数值推荐.html">
+            
+                <a href="参数值推荐.html">
+            
+                    
+                    参数值推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="参数值校验.html">
+            
+                <a href="参数值校验.html">
+            
+                    
+                    参数值校验
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="QA技能.html">
+            
+                <a href="QA技能.html">
+            
+                    
+                    FAQ 技能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="RC技能（Beta）.html">
+            
+                <a href="RC技能（Beta）.html">
+            
+                    
+                    RC 技能（Beta）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    使用指南
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="快速上手.html">
+            
+                <a href="快速上手.html">
+            
+                    
+                    快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="机器人配置范例.html">
+            
+                <a href="机器人配置范例.html">
+            
+                    
+                    机器人配置范例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    集成
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="Android.html">
+            
+                <a href="Android.html">
+            
+                    
+                    Android SDK 集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ios.html">
+            
+                <a href="ios.html">
+            
+                    
+                    IOS SDK 集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.3" data-path="WebSDK.html">
+            
+                <a href="WebSDK.html">
+            
+                    
+                    JS SDK 集成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="NiServer.html">
+            
+                <a href="NiServer.html">
+            
+                    
+                    Restful Api
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="私有化部署.html">
+            
+                <a href="私有化部署.html">
+            
+                    
+                    私有化部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="服务协议.html">
+            
+                <a href="服务协议.html">
+            
+                    
+                    服务协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="隐私协议.html">
+            
+                <a href="隐私协议.html">
+            
+                    
+                    隐私协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >JS SDK 集成</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="dhl-web-sdk">DHL Web SDK</h1>
+<p>Use to create your DHL(Dui Hua Liu) web client.</p>
+<h2 id="&#x1F4E6;-install">&#x1F4E6; Install</h2>
+<ul>
+<li><p>Use <a href="https://www.npmjs.com/package/dhl-core" target="_blank">npm</a>:</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">npm</span> <span class="token function">install</span> dhl-core --save
+</code></pre>
+</li>
+<li><p>Use Yarn</p>
+<pre class="language-"><code class="lang-bash">yarn add dhl-core
+</code></pre>
+</li>
+<li><p>Use CDN</p>
+<pre class="language-"><code class="lang-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://dhl-sdk.oss-cn-beijing.aliyuncs.com/web_sdk/1.0.0/dhl.js&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="&#x1F528;-usage">&#x1F528; Usage</h2>
+<ul>
+<li><p>From node_modules</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">DHL</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;dhl-core&apos;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a DHL object</span>
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DHL</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    appId<span class="token punctuation">:</span> <span class="token string">&apos;your app id&apos;</span><span class="token punctuation">,</span>
+    appKey<span class="token punctuation">:</span> <span class="token string">&apos;your app key&apos;</span><span class="token punctuation">,</span>
+    appSecret<span class="token punctuation">:</span> <span class="token string">&apos;your secret key&apos;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// init completed</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>from CDN</p>
+<pre class="language-"><code class="lang-javascript"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://dhl-sdk.oss-cn-beijing.aliyuncs.com/web_sdk/1.0.0/dhl.js&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+  <span class="token keyword">var</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DHL</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    appId<span class="token punctuation">:</span> <span class="token string">&quot;your app id&quot;</span><span class="token punctuation">,</span>
+    appKey<span class="token punctuation">:</span> <span class="token string">&quot;your app key&quot;</span><span class="token punctuation">,</span>
+    appSecret<span class="token punctuation">:</span> <span class="token string">&quot;your secret key&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+    <span class="token comment">// init completed</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="&#x1F308;-methods">&#x1F308; Methods</h2>
+<ul>
+<li><p>Connect Websocket and listen messages from server.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token function">connectWebsocket</span><span class="token punctuation">(</span>user<span class="token punctuation">:</span> UserInfo<span class="token punctuation">,</span>
+  onMessage<span class="token punctuation">:</span> <span class="token punctuation">(</span>msgResults<span class="token punctuation">:</span> MessageResult<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">,</span>
+  onOpen<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">,</span>
+  onClose<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">,</span>
+  onError<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>error<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><p>Send messages and Receive Server callback</p>
+<pre class="language-"><code class="lang-typescript"><span class="token function">send</span><span class="token punctuation">(</span>msgRequest<span class="token punctuation">:</span> MessageRequest<span class="token punctuation">,</span>
+  onSuccess<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>msgResult<span class="token punctuation">:</span> MessageResult<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">,</span>
+  onFailed<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>code<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> message<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">MessageRequest</span> <span class="token punctuation">{</span>
+  reqId<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  appId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  platformType<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">type</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  message<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  audioUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  imageUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  videoUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  userId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  agentId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  agentName<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  forceHandleManually<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Request type</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> RequestType <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token constant">NORMAL</span><span class="token punctuation">:</span> dhl<span class="token punctuation">.</span>DHLRequestType<span class="token punctuation">.</span>Normal<span class="token punctuation">,</span>
+  <span class="token constant">AGENT_LIST</span><span class="token punctuation">:</span> dhl<span class="token punctuation">.</span>DHLRequestType<span class="token punctuation">.</span>AgentList<span class="token punctuation">,</span>
+  <span class="token constant">WELCOME_MESSAGE</span><span class="token punctuation">:</span> dhl<span class="token punctuation">.</span>DHLRequestType<span class="token punctuation">.</span>WelcomeMessage
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// You can receive message results from during onSuccess callback</span>
+<span class="token keyword">interface</span> <span class="token class-name">MessageResult</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  serverMsgId<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">|</span> Long<span class="token punctuation">;</span>
+  creatTime<span class="token punctuation">:</span> Date<span class="token punctuation">;</span>
+  receiverId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  senderId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  userId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  agentId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  messageType<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  content<span class="token operator">?</span><span class="token punctuation">:</span> MessageContent<span class="token punctuation">;</span> <span class="token comment">// Use to save message detail</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Use for messageType</span>
+<span class="token keyword">const</span> MessageType <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token constant">TEXT</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token constant">IMAGE</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token constant">AUDIO</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  <span class="token constant">VIDEO</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+  <span class="token constant">SINGLE_CARD</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  <span class="token constant">MULTI_CARD</span><span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+  <span class="token constant">TEXT_LIST</span><span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+  <span class="token constant">OTHERS</span><span class="token punctuation">:</span> <span class="token number">8</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Use to save message detail</span>
+<span class="token keyword">interface</span> <span class="token class-name">MessageContent</span> <span class="token punctuation">{</span>
+  reqId<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  message<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  audioUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  videoUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  url<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  title<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  description<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  imgUrl<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  script<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  candidates<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  listCard<span class="token operator">?</span><span class="token punctuation">:</span> ListCard<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  listCardType<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Use for card list type and text list type</span>
+<span class="token keyword">interface</span> <span class="token class-name">ListCard</span> <span class="token punctuation">{</span>
+  title<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  avatar<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  description<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  description2<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  link<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  script<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  coreference<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  useCoreference<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li><p>MessageResult Filed Detail</p>
+<ul>
+<li>MessageResult Filed</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>filed</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>id</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x7684; uuid&#xFF0C;&#x5728;&#x751F;&#x6210;&#x6D88;&#x606F;&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x8D4B;&#x503C;&#xFF0C;&#x5BF9;&#x4E8E; MessageRequest &#x53EF;&#x4EE5;&#x4F7F;&#x7528; MessageRequest.isSame(MessageResult result) &#x65B9;&#x6CD5;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x540C;&#x4E00;&#x6761;&#x6D88;&#x606F;</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>creatTime</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x63A5;&#x6536;&#x7684;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>receiverId</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x63A5;&#x6536;&#x8005; id</td>
+</tr>
+<tr>
+<td>string</td>
+<td>senderId</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x53D1;&#x9001;&#x8005; id</td>
+</tr>
+<tr>
+<td>string</td>
+<td>agentId</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x5BF9;&#x5E94;&#x7684; Agent Id</td>
+</tr>
+<tr>
+<td>number</td>
+<td>messageType</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x7C7B;&#x578B;<br>MessageResult.TEXT &#x4E3A;&#x6587;&#x5B57;&#x7C7B;&#x578B;<br>MessageResult.IMAGE &#x4E3A;&#x56FE;&#x7247;&#x7C7B;&#x578B;<br>MessageResult.AUDIO &#x4E3A;&#x97F3;&#x9891;&#x7C7B;&#x578B;<br>MessageResult.VIDEO &#x4E3A;&#x89C6;&#x9891;&#x7C7B;&#x578B;<br>MessageResult.SINGLE_CARD &#x4E3A;&#x5361;&#x7247;&#x7C7B;&#x578B;,&#x5361;&#x7247;&#x4FDD;&#x5B58;&#x5728; listcard &#x91CC;<br>MessageResult.MULTI_CARD &#x4E3A;&#x5361;&#x7247;&#x5217;&#x8868;&#x7C7B;&#x578B;<br>MessageResult.TEXT_LIST &#x4E3A;&#x6587;&#x5B57;&#x5217;&#x8868;&#x7C7B;&#x578B;</td>
+</tr>
+<tr>
+<td>MessageContent</td>
+<td>content</td>
+<td>&#x83B7;&#x53D6;&#x6D88;&#x606F;&#x5185;&#x5BB9; &#x8BE6;&#x89C1;&#x4E0B;&#x8282;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>MessageContent Filed</p>
+<p><strong>&#x6CE8;&#xFF1A;</strong> &#x6BCF;&#x6761;&#x6536;&#x5230;&#x7684;&#x6D88;&#x606F;&#x90FD;&#x53EF;&#x80FD;&#x6709;&#x5907;&#x9009;&#x9009;&#x9879;&#xFF0C;&#x901A;&#x8FC7; <code>getCandidates</code> &#x83B7;&#x53D6;</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>&#x6D88;&#x606F;&#x7C7B;&#x578B;</th>
+<th>&#x6D88;&#x606F;&#x5185;&#x5BB9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x6587;&#x672C;&#x6D88;&#x606F;</td>
+<td>message &#x6D88;&#x606F;&#x6587;&#x5B57;</td>
+</tr>
+<tr>
+<td>&#x56FE;&#x7247;&#x6D88;&#x606F;</td>
+<td>title &#x56FE;&#x7247;&#x6807;&#x9898;<br>description &#x56FE;&#x7247;&#x63CF;&#x8FF0;<br>imgUrl &#x56FE;&#x7247;&#x94FE;&#x63A5;</td>
+</tr>
+<tr>
+<td>&#x97F3;&#x9891;&#x6D88;&#x606F;</td>
+<td>audioUrl &#x97F3;&#x9891;&#x94FE;&#x63A5;</td>
+</tr>
+<tr>
+<td>&#x89C6;&#x9891;&#x6D88;&#x606F;</td>
+<td>videoUrl &#x89C6;&#x9891;&#x94FE;&#x63A5;</td>
+</tr>
+<tr>
+<td>&#x5361;&#x7247;&#x5217;&#x8868;</td>
+<td>listCard &#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>ListCard[]</code> &#x6570;&#x7EC4;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;<br>title &#x5361;&#x7247;&#x5217;&#x8868;&#x6807;&#x9898;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ListCard &#x5C5E;&#x6027;&#x8BF4;&#x660E;</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>&#x8FD4;&#x56DE;&#x7C7B;&#x578B;</th>
+<th>&#x63A5;&#x53E3;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>title</td>
+<td>&#x83B7;&#x53D6;&#x5361;&#x7247;&#x6807;&#x9898;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>avatar</td>
+<td>&#x83B7;&#x53D6;&#x5361;&#x7247;&#x56FE;&#x6807;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>description</td>
+<td>&#x83B7;&#x53D6;&#x5361;&#x7247;&#x63CF;&#x8FF0;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>description2</td>
+<td>&#x83B7;&#x53D6;&#x5361;&#x7247;&#x526F;&#x63CF;&#x8FF0;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>link</td>
+<td>&#x83B7;&#x53D6;&#x8DF3;&#x8F6C;&#x94FE;&#x63A5;</td>
+</tr>
+<tr>
+<td>string</td>
+<td>script</td>
+<td>&#x83B7;&#x53D6;&#x94FE;&#x63A5;&#x6CE8;&#x5165;&#x7684; script</td>
+</tr>
+<tr>
+<td>string</td>
+<td>coreference</td>
+<td>&#x83B7;&#x53D6;&#x5361;&#x7247;&#x70B9;&#x51FB;&#x65F6;&#x53D1;&#x9001;&#x7684;&#x6587;&#x5B57;</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>useCoreference</td>
+<td>&#x662F;&#x5426;&#x4F7F;&#x7528; coreference</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license">License</h2>
+<p>MIT License.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ios.html" class="navigation navigation-prev " aria-label="Previous page: IOS SDK 集成">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="NiServer.html" class="navigation navigation-next " aria-label="Next page: Restful Api">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"JS SDK 集成","level":"1.4.3","depth":2,"next":{"title":"Restful Api","level":"1.4.4","depth":2,"path":"NiServer.md","ref":"NiServer.md","articles":[]},"previous":{"title":"IOS SDK 集成","level":"1.4.2","depth":2,"path":"ios.md","ref":"ios.md","articles":[]},"dir":"ltr"},"config":{"plugins":["styles-less","prism","prism-themes","-highlight","favicon","livereload"],"styles":{"website":"website-1556095792301.css"},"pluginsConfig":{"prism":{"css":["prism-themes/themes/prism-a11y-dark.css"]},"styles-less":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"assets/images/favicon.ico","bookmark":"assets/images/favicon.ico"},"prism-themes":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"对话流文档","language":"zh-hans","links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*","description":"对话流（Conversation Flow Platform），是奇点机智（Naturali）自主研发的语音对话开发平台，旨在让每个企业都可以轻松开发 AI 对话机器人（AI Bots）。无需程序员，企业的产品、运营人员，也能轻松定义、维护完整流畅的 AI 对话。","extension":null},"file":{"path":"WebSDK.md","mtime":"2019-04-24T08:49:52.250Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-24T08:46:56.287Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
